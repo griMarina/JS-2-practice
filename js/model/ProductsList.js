@@ -14,7 +14,11 @@ export default class ProductList {
     }
 
     remove(id) {
-        const index = this.products.findIndex(product => product.id === id);
+        const index = this.products.findIndex(product => product._id === id);
         this.products.splice(index, 1);
+    }
+
+    getTotalPrice() {
+        return this.products.reduce((total, product) => total + product.getPrice(), 0);
     }
 }

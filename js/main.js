@@ -1,15 +1,15 @@
 import API from "./API.js";
-import ProductList from "./model/ProductList.js";
+import ProductsList from "./model/ProductsList.js";
 import Card from "./view/card.js";
 
-const productList = new ProductList(API.fetch());
-console.log(productList.get());
+const productsList = new ProductsList(API.fetch());
 
 const $productCards = document.querySelector('.products__cards');
 
-const $cards = productList.get().map(product => new Card(product));
-console.log($cards);
+const $cards = productsList.get().map(product => new Card(product));
 
 $cards.forEach($card => {
     $card.render($productCards)
 });
+
+console.log(productsList.getTotalPrice());
