@@ -1,0 +1,261 @@
+.product-sorting {
+    display: flex;
+    padding-top: 51px;
+    padding-bottom: 64px;
+}
+
+.product-filter-list {
+    min-width: 90px;
+    margin-right: 2px;
+    position: relative;
+    z-index: 2;
+}
+
+.product-filter-details {
+    position: absolute;
+    z-index: 2;
+}
+
+.product-filter-details[open] {
+    box-shadow: $shadow;
+    padding-top: 13px;
+    margin-top: -13px;
+
+    & .filter-summary {
+        color: $main-color;
+    }
+
+    & .filter-icon {
+        fill: $main-color;
+    }
+}
+
+.filter-summary {
+    display: block;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 17px;
+    padding-left: 17px;
+}    
+
+.filter {
+
+    &__heading {
+        display: block;
+        @include text-font(400);
+        color: #6F6E6E;
+        border-left: 5px solid #EF5B70;
+        border-bottom: 1px solid #EBEBEB;
+        padding-left: 11px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    &__heading::-webkit-details-marker {
+        display: none;
+    }
+
+    &__list {
+        list-style-type: none;
+        margin-top: 24px;
+        margin-bottom: 24px;
+        margin-left: 12px;
+
+        &_bottom {
+            margin-bottom: 0;
+        }
+    }
+
+    &__item {
+        margin-bottom: 11px;
+
+        & a {
+            text-decoration: none;
+            @include text-font(400);
+            color: #6F6E6E;
+
+        }
+    }
+
+    &__content {
+        width: 360px;
+        background-color: #FFFFFF;
+        padding: 17px;
+    }
+
+    &__box[open] {
+        
+        & .filter__heading {
+            color: $main-color;
+        }
+    }
+
+}
+
+.filter-summary::-webkit-details-marker {
+    display: none;
+}
+
+.filter-icon {
+    margin-left: 11px;
+}
+
+.product-sort {
+    display: flex;
+    @include text-font(400);
+    color: #6F6E6E;
+    position: relative;
+    margin-left: 275px;
+    z-index: 1;
+
+
+    &__size-drop {
+        width: 79px;
+        padding: 10px;
+        background-color: #FFFFFF;
+        box-shadow: $shadow;
+        position: absolute;
+        top: 22px;
+        left: 175px;
+        transition-duration: 0.3s;
+        transform-origin: top;
+        transform: scaleY(0);
+        
+    }
+
+    &__size-box-label {
+        display: block;
+        margin-bottom: 7px;
+        font-size: 14px;
+        line-height: 16px;
+        color: #6F6E6E;
+    }
+
+    &__size-input {
+        margin-right: 9px;
+    }
+
+    &__item {
+        margin-left: 28px;
+
+        &::after {
+            content: url(../img/arrow-sort-icon.svg);
+            padding-left: 10px;
+        }
+    }
+
+    #check {
+        display: none;
+    }
+
+    #check:checked ~ &__size-drop {
+        transform: scaleY(1);
+    }
+}
+
+.catalog-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+// tablet
+
+@media (max-width: 1195px) {
+
+    .product-sorting {
+        justify-content: space-between;
+    }
+
+    .filter-summary {
+        padding-left: 0;
+    }
+}
+
+@media (max-width: 1190px) {
+
+    .catalog-cards {
+        padding: 0 15px;
+    }
+}
+
+@media (max-width: 1172px) {
+    .card-catalog {
+
+        &:nth-child(3) {
+            display: none;
+        }
+        
+        &:nth-child(2n + 2) {
+            margin-right: 16px;
+        }
+
+        &:nth-child(odd) {
+            margin-right: 0;
+        }
+
+        &:first-child {
+            margin-right: 16px;
+        }
+
+        &:nth-child(2) {
+            margin-right: 0;
+        }
+    }
+}
+
+// mobile
+
+@media (max-width: 799px) {
+
+    .catalog-cards {
+        padding: 0 30px;
+    }
+
+    .card-catalog {
+ 
+        &:nth-child(2n + 2) {
+            margin-right: 0;
+        }
+
+        &:first-child {
+            margin-right: 0;
+        }
+    }
+}
+
+@media (max-width: 788px) {
+
+    .product-sorting {
+        justify-content: space-between;
+    }
+
+    .product-filter-list {
+        min-width: 10px;
+    }
+
+    .product-filter-details[open] {
+        margin-top: -33px;
+    }
+
+    .filter-summary {
+        & span {
+            display: none;
+        }
+        & svg {
+            transform: scale(2.5);
+        }
+    }
+
+    .product-sort {
+        min-width: 260px;
+        max-height: 17px;
+        font-size: 12px;
+        line-height: 14px;
+        margin-left: 0;
+    }
+
+    .catalog-cards {
+        padding-top: 72px;
+    }
+}
