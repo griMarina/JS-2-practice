@@ -99,6 +99,23 @@
     }
 }
 
+.cart-link {
+    .cart-circle {
+        position: absolute;
+        top: 18px;
+        right: 7px;
+    }
+
+    span {
+        position: absolute;
+        top: 18px;
+        right: 13px;
+        color: #FFFFFF;
+    }
+}
+
+
+
 .account-link-mobile {
     & svg {
         fill: $main-color;
