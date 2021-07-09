@@ -1,10 +1,11 @@
 export default class Card {
     constructor(product) {
         this._data = product;
+        // this._addHandlerCb = null;
     }
 
     getHtlm() {
-        return `<div class="card" >
+        return `<div class="card" id="card-${this._data.id}">
             <div class="card__img">
                 <img src="img/${this._data.img}" alt="item's image">
                     <div class="card__overlay">
@@ -18,11 +19,23 @@ export default class Card {
             </div>
             <h3 class="card__title">${this._data.title}</h3>
             <p class="text card__text">${this._data.desc}</p>
-            <span class="card__price">$${this._data.getPrice()}</span>
+            <span class="card__price">$${this._data.price}</span>
         </div>`;
     }
 
     render($container, target = 'beforeend') {
         $container.insertAdjacentHTML(target, this.getHtlm());
+        if (this._addHandler) {
+            const addBtn = $container.querySelector(`#card-${this._data.id} > .card__btn`);
+            addBtn.addEventListener('click', this._addHandler);
+        }
     }
+
+    //     _addHandler() {
+    //         this.addHandlerCb(this._data.id);
+    //     }
+
+    //     setAddHandler(callback) {
+    //         this._addHandler = callback;
+    //     }
 }
