@@ -100,10 +100,12 @@
 }
 
 .cart-link {
+    position: relative;
+
     .cart-circle {
         position: absolute;
-        top: 18px;
-        right: 7px;
+        top: -8px;
+        right: -11px;
     }
 
     span {

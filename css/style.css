@@ -209,10 +209,14 @@ mobile
   display: none;
 }
 
+.cart-link {
+  position: relative;
+}
+
 .cart-link .cart-circle {
   position: absolute;
-  top: 18px;
-  right: 7px;
+  top: -8px;
+  right: -11px;
 }
 
 .cart-link span {
