@@ -1,6 +1,6 @@
 import API from "./API.js";
 import ProductsList from "./model/ProductsList.js";
-import CartProductsList from "./model/CartProductsList.js";
+import Cart from "./model/Cart.js";
 import Card from "./view/card.js";
 
 function addToCart(id) {
@@ -9,7 +9,7 @@ function addToCart(id) {
 }
 
 const productsList = new ProductsList(API.fetch());
-const cart = new CartProductsList([]);
+const cart = new Cart([]);
 
 const $productCards = document.querySelector('.products__cards');
 

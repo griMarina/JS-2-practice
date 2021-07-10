@@ -1,18 +1,6 @@
 import ProductsList from "./ProductsList.js";
 
-// export default class CardProductsList {
-//     constructor(cartProducts) {
-//         this.cartProducts = cartProducts.map(item => new CartProduct(item));
-//     }
-
-//     get() {
-//         return this.cartProducts;
-//     }
-
-//     getQuantity()
-// }
-
-export default class CartProductsList extends ProductsList {
+export default class Cart extends ProductsList {
     constructor(productsData) {
         super(productsData);
     }

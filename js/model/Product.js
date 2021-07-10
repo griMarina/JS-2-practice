@@ -9,10 +9,6 @@ export default class {
         this._price = price;
     }
 
-    // getPrice() {
-    //     return this._price;
-    // }
-
     get price() {
         return this._price;
     }
