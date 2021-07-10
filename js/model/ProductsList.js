@@ -10,7 +10,7 @@ export default class ProductsList {
     }
 
     getById(id) {
-        return this.products.find(product.id === id);
+        return this.products.find(product => product.id === id);
     }
 
     getQuantity() {

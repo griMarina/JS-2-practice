@@ -14,7 +14,7 @@ export default class Cart extends ProductsList {
         if (oldProduct) {
             oldProduct.add()
         } else {
-            this.products.push(product);
+            this.products.push(newProduct);
         }
     }
 }

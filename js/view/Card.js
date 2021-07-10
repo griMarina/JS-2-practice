@@ -1,7 +1,7 @@
 export default class Card {
     constructor(product) {
         this._data = product;
-        // this._addHandlerCb = null;
+        this._addHandlerCb = null;
     }
 
     getHtlm() {
@@ -26,16 +26,17 @@ export default class Card {
     render($container, target = 'beforeend') {
         $container.insertAdjacentHTML(target, this.getHtlm());
         if (this._addHandler) {
-            const addBtn = $container.querySelector(`#card-${this._data.id} > .card__btn`);
-            addBtn.addEventListener('click', this._addHandler);
+            const cardToAdd = $container.querySelector(`#card-${this._data.id}`);
+            const addBtn = cardToAdd.querySelector('.card__btn');
+            addBtn.addEventListener('click', this._addHandler.bind(this));
         }
     }
 
-    //     _addHandler() {
-    //         this.addHandlerCb(this._data.id);
-    //     }
+    _addHandler() {
+        this._addHandlerCb(this._data.id);
+    }
 
-    //     setAddHandler(callback) {
-    //         this._addHandler = callback;
-    //     }
+    setAddHandler(callback) {
+        this._addHandlerCb = callback;
+    }
 }
