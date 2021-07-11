@@ -8,21 +8,25 @@ import makeGetRequest from "./makeGetRequest.js";
 function addToCart(id) {
     const product = productsList.getById(id);
     cart.add(new CartProduct(product));
-    console.log(id);
-    console.log(cart);
+    cart.render($cart); // количество товаров в корзине
 }
 
 const productsList = new ProductsList(API.fetch());
 const cart = new Cart([]);
 
+
 const $productCards = document.querySelector('.products__cards');
+const $cart = document.querySelector('.cart-link');
+console.log($cart);
 
 const cards = productsList.get().map(product => new Card(product));
 
 cards.forEach(card => {
     card.setAddHandler(addToCart);
-    card.render($productCards)
+
+    card.render($productCards);
 });
+
 
 
 // Домашнее задание № 3 

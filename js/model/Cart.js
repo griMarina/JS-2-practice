@@ -17,4 +17,14 @@ export default class Cart extends ProductsList {
             this.products.push(newProduct);
         }
     }
+
+    // отображение количества товаров в корзине
+    getHtlm() {
+        return `<span>${this.getQuantity()}</span>`;
+    }
+
+    render($container, target = 'beforeend') {
+        $container.lastChild.remove();
+        $container.insertAdjacentHTML(target, this.getHtlm());
+    }
 }

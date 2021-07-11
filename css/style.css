@@ -221,9 +221,10 @@ mobile
 
 .cart-link span {
   position: absolute;
-  top: 18px;
-  right: 13px;
+  top: -6px;
+  right: -5px;
   color: #FFFFFF;
+  font-size: 13px;
 }
 
 .account-link-mobile svg {
