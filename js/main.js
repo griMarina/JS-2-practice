@@ -16,7 +16,6 @@ const productsList = new ProductsList(API.fetch());
 const cart = new Cart([]);
 
 const $productCards = document.querySelector('.products__cards');
-console.log($productCards);
 
 const cards = productsList.get().map(product => new Card(product));
 
@@ -25,6 +24,8 @@ cards.forEach(card => {
     card.render($productCards)
 });
 
+
+// Домашнее задание № 3 
 const API_URL = 'https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses';
 
 console.log(makeGetRequest('GET', `${API_URL}/catalogData.json`));
