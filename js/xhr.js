@@ -17,6 +17,8 @@
 //     xhr.send();
 // }
 
+const API_URL = 'https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses';
+
 function makeGetRequest(method, url) {
     return new Promise((resolve, reject) => {
         let xhr;
@@ -44,3 +46,5 @@ function makeGetRequest(method, url) {
         xhr.send();
     })
 }
+
+makeGetRequest('GET', `${API_URL}/catalogData.json`);
