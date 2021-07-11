@@ -17,13 +17,11 @@ const cart = new Cart([]);
 
 const $productCards = document.querySelector('.products__cards');
 const $cart = document.querySelector('.cart-link');
-console.log($cart);
 
 const cards = productsList.get().map(product => new Card(product));
 
 cards.forEach(card => {
     card.setAddHandler(addToCart);
-
     card.render($productCards);
 });
 
