@@ -13,7 +13,7 @@ export default (method, url) => {
         xhr.responseType = 'json';
 
         xhr.onload = () => {
-            if (xhr.readyState >= 400) {
+            if (xhr.status >= 400) {
                 reject(xhr.response);
             } else {
                 resolve(xhr.response);
