@@ -16,7 +16,6 @@ export default class ProductsList {
     getQuantity() {
         return this.products.reduce((acc, product) => acc + product.quantity, 0);
     }
-
     add(product) {
         this.products.push(product);
     }

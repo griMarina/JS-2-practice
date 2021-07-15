@@ -20,6 +20,7 @@ export default class Card {
             <h3 class="card__title">${this._data.title}</h3>
             <p class="text card__text">${this._data.desc}</p>
             <span class="card__price">$${this._data.price}</span>
+
         </div>`;
     }
 
