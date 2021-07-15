@@ -99,6 +99,26 @@
     }
 }
 
+.cart-link {
+    position: relative;
+
+    .cart-circle {
+        position: absolute;
+        top: -8px;
+        right: -11px;
+    }
+
+    span {
+        position: absolute;
+        top: -6px;
+        right: -5px;
+        color: #FFFFFF;
+        font-size: 13px;
+    }
+}
+
+
+
 .account-link-mobile {
     & svg {
         fill: $main-color;

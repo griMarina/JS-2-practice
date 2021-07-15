@@ -209,6 +209,24 @@ mobile
   display: none;
 }
 
+.cart-link {
+  position: relative;
+}
+
+.cart-link .cart-circle {
+  position: absolute;
+  top: -8px;
+  right: -11px;
+}
+
+.cart-link span {
+  position: absolute;
+  top: -6px;
+  right: -5px;
+  color: #FFFFFF;
+  font-size: 13px;
+}
+
 .account-link-mobile svg {
   fill: #F16D7F;
 }
