@@ -15,7 +15,6 @@ export default class Cart extends ProductList {
     }
 
     getCount() {
-        console.log(this._productList);
 
         return this._productList.reduce((acc, product) => acc + product.quantity, 0)
     }
