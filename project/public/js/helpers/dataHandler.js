@@ -1,7 +1,7 @@
 // модуль, который получает данные с сервера
 
 export default {
-    _url: '/api/v1/',
+    _url: '../api/v1/',
 
     getCatalog(errorCallback) {
         return fetch(`${this._url}catalogData.json`)
