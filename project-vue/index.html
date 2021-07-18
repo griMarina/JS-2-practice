@@ -12,7 +12,7 @@
     <div id="app">
         <index-page v-if="currentPage == 'index'" @go-to="goToHandler" v-bind:count="cart.length" v-bind:list="list" v-on:add-to-cart="addToCartHandler"></index-page>
 
-        <cart-page v-if="currentPage == 'cart'" @go-to="goToHandler"></cart-page>
+        <cart-page v-if="currentPage == 'cart'" @go-to="goToHandler" v-bind:count="cart.length" v-bind:cart="cart"></cart-page>
 
 
     </div>
