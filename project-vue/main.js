@@ -286,26 +286,26 @@ Vue.component('purchasing', {
 
         <div class="purchasing__btn">
             <button>Clear shopping cart</button>
-            <a href="catalog.html">Clear shopping cart</a>
+            <a href="catalog.html">Continue shopping</a>
         </div>
     </div>
     <div class="purchasing__confirm">
-        <form class="purchasing__form" action="#" method="POST">
-            <span class="purchasing__form-heading">SHIPPING ADRESS</span>
-            <input type="text" class="purchasing__form-inp" placeholder="Bangladesh">
-            <input type="text" class="purchasing__form-inp" placeholder="State">
-            <input type="text" class="purchasing__form-inp" placeholder="Postcode / Zip" pattern="[0-9]{6}">
-            <input type="submit" value="GET A QUOTE" class="purchasing__form-btn" >
-        </form>
-        <div class="purchasing__total">
-            <p class="purchasing__sub">SUB TOTAL <span class="purchasing__sub-price">$900</span></p>
-            <p class="purchasing__grand">GRAND TOTAL <span class="purchasing__grand-price">$900</span></p>
-            <hr>
-            <button class="purchasing__total-btn">PROCEED TO CHECKOUT</button>
-        </div>
-    </div>
+                <form class="purchasing__form" action="#" method="POST">
+                    <span class="purchasing__form-heading">SHIPPING ADRESS</span>
+                    <input type="text" class="purchasing__form-inp" placeholder="Bangladesh">
+                    <input type="text" class="purchasing__form-inp" placeholder="State">
+                    <input type="text" class="purchasing__form-inp" placeholder="Postcode / Zip" pattern="[0-9]{6}">
+                    <input type="submit" value="GET A QUOTE" class="purchasing__form-btn" >
+                </form>
+                <div class="purchasing__total">
+                    <p class="purchasing__sub">SUB TOTAL <span class="purchasing__sub-price">$ {{total}}</span></p>
+                    <p class="purchasing__grand">GRAND TOTAL <span class="purchasing__grand-price">$ {{total}}</span></p>
+                    <hr>
+                    <button class="purchasing__total-btn">PROCEED TO CHECKOUT</button>
+                </div>
+            </div>
 </section>`,
-    props: ['cart']
+    props: ['cart', 'total']
 
 })
 
@@ -339,7 +339,7 @@ Vue.component('cart-page', {
     <site-header @go-to="goToHandler" v-bind:count="count"></site-header>
     <main>
         <cart-top></cart-top>
-        <purchasing v-bind:cart="cart"></purchasing>
+        <purchasing v-bind:cart="cart" v-bind:total="total"></purchasing>
 
     </main>
     <advantages></advantages>
@@ -351,7 +351,7 @@ Vue.component('cart-page', {
             this.$emit('go-to', target)
         }
     },
-    props: ['cart', 'count']
+    props: ['cart', 'count', 'total']
 })
 
 const app = new Vue({
@@ -414,7 +414,8 @@ const app = new Vue({
                 "price": 52
             }
         ],
-        cart: []
+        cart: [],
+
     },
     methods: {
         goToHandler(target) {
@@ -424,6 +425,11 @@ const app = new Vue({
             const product = this.list.find(item => item.id === id);
             this.cart.push(product);
             console.log(this.cart);
+        }
+    },
+    computed: {
+        total: function () {
+            return this.cart.reduce((acc, product) => acc + product.price, 0)
         }
     }
 })
