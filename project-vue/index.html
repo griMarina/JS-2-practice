@@ -10,9 +10,9 @@
 </head>
 <body>
     <div id="app">
-        <index-page v-if="currentPage == 'index'" @go-to="goToHandler" v-bind:count="cart.length" v-bind:list="list" v-on:add-to-cart="addToCartHandler"></index-page>
+        <index-page v-if="currentPage == 'index'" @go-to="goToHandler" v-bind:total-quantity="totalQuantity" v-bind:list="list" v-on:add-to-cart="addToCartHandler"></index-page>
 
-        <cart-page v-if="currentPage == 'cart'" @go-to="goToHandler" v-bind:count="cart.length" v-bind:cart="cart" v-bind:total="total"></cart-page>
+        <cart-page v-if="currentPage == 'cart'" @go-to="goToHandler" v-bind:total-quantity="totalQuantity" v-bind:cart="cart" v-bind:total-price="totalPrice" v-on:remove-from-cart="removeFromCartHandler"></cart-page>
 
 
     </div>
