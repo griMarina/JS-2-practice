@@ -8,7 +8,7 @@ export default class Product {
     }
     get id() { return this._id }
     get title() { return this._title }
-    get description() { return this._description }
+    get description() { return this._desc }
     get image() { return this._image }
     get price() { return this._price }
 

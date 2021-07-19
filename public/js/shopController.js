@@ -16,7 +16,7 @@ export default {
         this._eventEmitter.addListener('loaded', this._renderCart.bind(this));
         this._eventEmitter.addListener('loaded', this._renderShowcase.bind(this));
 
-        // this._cartModel.load();
+        this._cartModel.load();
         this._showcaseModel.load();
 
     },
@@ -25,6 +25,7 @@ export default {
     _addToCart(id) {
         const product = new ProductInCart(this._showcaseModel.get(id));
         this._cartModel.add(product);
+        console.log(this._cartModel);
     },
 
     _removeFromCart(id) {
