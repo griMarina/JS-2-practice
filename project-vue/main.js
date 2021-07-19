@@ -444,32 +444,20 @@ const app = new Vue({
             this.currentPage = target
         },
         addToCartHandler(id) {
-            // const findProduct = this.list.find(item => item.id === id);
-            // if (findProduct) {
-            //     if (findProduct.quantity > 1) {
-            //         findProduct.quantity++;
-            //     } else {
-            //         this.cart.push(findProduct);
-            //     }
-            // }
             const findProduct = this.list.find(item => item.id === id);
-            console.log(findProduct);
             if (findProduct.quantity === 0) {
                 this.cart.push(findProduct);
                 findProduct.quantity++;
             } else {
                 findProduct.quantity++;
             }
-
         },
         removeFromCartHandler(id) {
             const findProduct = this.cart.find(item => item.id === id);
-            if (findProduct) {
-                if (findProduct.quantity > 1) {
-                    findProduct.quantity--;
-                } else {
-                    this.cart = this.cart.filter(item => item.id !== id);
-                }
+            if (findProduct.quantity > 1) {
+                findProduct.quantity--;
+            } else {
+                this.cart = this.cart.filter(item => item.id !== id);
             }
         }
     },
