@@ -469,8 +469,8 @@ const app = new Vue({
                 this.cart = this.cart.filter(item => item.id !== id);
             }
         },
-        CartBtnHandler() {
-            this.cart = [];
+        clearBtnHandler() {
+            this.cart.splice(0, this.cart.length);
         }
     },
     computed: {
