@@ -82,10 +82,10 @@ Vue.component('site-header', {
 </header>`,
     methods: {
         CartBtnHandler() {
-            this.$emit('go-to', 'cart')
+            this.$emit('go-to', 'cart');
         },
         logoClickHandler() {
-            this.$emit('go-to', 'index')
+            this.$emit('go-to', 'index');
 
         }
     },
@@ -154,7 +154,7 @@ Vue.component('card', {
     props: ['product'],
     methods: {
         addToCartHandler() {
-            this.$emit('add-to-cart', this.product.id)
+            this.$emit('add-to-cart', this.product.id);
         }
     }
 })
@@ -173,7 +173,10 @@ Vue.component('product-list', {
     props: ['list'],
     methods: {
         addToCartHandler(id) {
-            this.$emit('add-to-cart', id)
+            this.$emit('add-to-cart', id);
+        },
+        clearBtnHandler() {
+            this.$emit('clear-cart');
         }
     }
 })
@@ -277,7 +280,7 @@ Vue.component('cart-card', {
     props: ['cartProduct'],
     methods: {
         removeFromCartHandler() {
-            this.$emit('remove-from-cart', this.cartProduct.id)
+            this.$emit('remove-from-cart', this.cartProduct.id);
         }
     }
 
@@ -289,14 +292,17 @@ Vue.component('cart-products-list', {
         <cart-card v-for="cartProduct of cart" v-bind:cartProduct="cartProduct" @remove-from-cart="removeFromCartHandler"></cart-card>
 
         <div class="purchasing__btn">
-            <button>Clear shopping cart</button>
+            <button @click="clearBtnHandler">Clear shopping cart</button>
             <a href="catalog.html">Continue shopping</a>
         </div>
     </div>`,
     props: ['cart'],
     methods: {
         removeFromCartHandler(id) {
-            this.$emit('remove-from-cart', id)
+            this.$emit('remove-from-cart', id);
+        },
+        clearBtnHandler() {
+            this.$emit('clear-cart');
         }
     }
 })
@@ -336,10 +342,10 @@ Vue.component('index-page', {
     </div>`,
     methods: {
         goToHandler(target) {
-            this.$emit('go-to', target)
+            this.$emit('go-to', target);
         },
         addToCartHandler(id) {
-            this.$emit('add-to-cart', id)
+            this.$emit('add-to-cart', id);
         }
     },
     props: ['list', 'total-quantity']
@@ -351,7 +357,7 @@ Vue.component('cart-page', {
     <main>
         <cart-top></cart-top>
         <section class="purchasing center">
-            <cart-products-list v-bind:cart="cart" @remove-from-cart="removeFromCartHandler"></cart-products-list>
+            <cart-products-list v-bind:cart="cart" @remove-from-cart="removeFromCartHandler" @clear-cart="CartBtnHandler"></cart-products-list>
             <cart-confirm v-bind:total-price="totalPrice"></cart-confirm>
         </section>
     </main>
@@ -361,10 +367,13 @@ Vue.component('cart-page', {
     </div>`,
     methods: {
         goToHandler(target) {
-            this.$emit('go-to', target)
+            this.$emit('go-to', target);
         },
         removeFromCartHandler(id) {
-            this.$emit('remove-from-cart', id)
+            this.$emit('remove-from-cart', id);
+        },
+        CartBtnHandler() {
+            this.$emit('clear-cart');
         }
     },
     props: ['cart', 'total-quantity', 'total-price']
@@ -441,7 +450,7 @@ const app = new Vue({
     },
     methods: {
         goToHandler(target) {
-            this.currentPage = target
+            this.currentPage = target;
         },
         addToCartHandler(id) {
             const findProduct = this.list.find(item => item.id === id);
@@ -459,17 +468,17 @@ const app = new Vue({
             } else {
                 this.cart = this.cart.filter(item => item.id !== id);
             }
+        },
+        CartBtnHandler() {
+            this.cart = [];
         }
     },
     computed: {
-        totalSum: function () {
-            return this.cart.reduce((acc, product) => acc + product.price, 0);
-        },
         totalQuantity: function () {
-            return this.cart.reduce((acc, product) => acc + product.quantity, 0)
+            return this.cart.reduce((acc, product) => acc + product.quantity, 0);
         },
         totalPrice: function () {
-            return this.totalSum * this.totalQuantity;
+            return this.cart.reduce((acc, product) => acc + product.price * product.quantity, 0);
         }
     }
 })
