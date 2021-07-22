@@ -338,7 +338,6 @@ Vue.component('index-page', {
         <advantages></advantages>
         <feedback></feedback>
         <site-footer></site-footer>
-
     </div>`,
     methods: {
         goToHandler(target) {
