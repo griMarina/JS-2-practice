@@ -1,0 +1,80 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    min-height: 100vh;
+}
+
+.hidden {
+    position: absolute;
+    left: -999999px;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+}
+
+.wrapper {
+    max-width: 1140px;
+    margin: 0 auto;
+}
+
+.center {
+    padding: 0 calc(50% - 570px);
+}
+
+/* tablet классический адаптив
+
+@media (max-width: 1180px) {
+    .wrapper {
+        width: 736px;
+    }
+
+    .center {
+        padding: 0 calc(50% - 368px);
+    }
+}
+
+mobile 
+
+@media (max-width: 767px) {
+    .wrapper {
+        width: 345px;
+    }
+
+    .center {
+        padding: 0 calc(50% - 172.5px);
+    }
+}
+*/
+
+// отзывчивый адаптив tablet
+
+@media (max-width: 1195px) {
+    .wrapper {
+        padding: 0 16px;
+    }
+
+    .center {
+        padding: 0 16px;
+    }
+}
+
+@media (max-width: 788px) {
+    .wrapper {
+        padding: 0 8px;
+    }
+
+    .center {
+        padding: 0 8px;
+    }
+}
