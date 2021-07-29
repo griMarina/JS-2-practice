@@ -217,6 +217,24 @@
         border: 1px solid $main-color;
         }
     }
+
+    &__text {
+        text-align: center;
+        margin-top: 100px;
+        color: $main-color;
+        font-weight: 400;
+        font-size: 24px;
+        line-height: 29px;
+        text-transform: uppercase;
+    }
+}
+
+.purchasing-empty{
+    flex-direction: column;
+
+    &__btn {
+        align-self: center;
+    }
 }
 
 // tablet
@@ -323,7 +341,6 @@
 
         &__total {
             align-self: auto;
-            margin-top: 0;
         }
     }
     

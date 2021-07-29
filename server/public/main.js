@@ -266,10 +266,10 @@ Vue.component('cart-card', {
     <div class="purchasing__item-desc">
         <h2 class="purchasing__item-heading">{{cartProduct.product_name}}</h2>
         <ul class="purchasing__list">
-            <li class="purchasing__list-item">Price: <span class="purchasing__text-price">$ {{cartProduct.price}}</span></li>
+            <li class="purchasing__list-item">Price: <span class="purchasing__text-price">$ {{cartProduct.price * cartProduct.quantity}}</span></li>
             <li class="purchasing__list-item">Color: Red</li>
             <li class="purchasing__list-item">Size: Xl</li>
-            <li class="purchasing__list-item">Quantity:	<input class="purchasing__list-input" type="number" min="0" max="20" :value=cartProduct.quantity></li>
+            <li class="purchasing__list-item">Quantity:	<input class="purchasing__list-input" v-model.number="cartProduct.quantity" type="number" v-on:change="changeQuantityHandler" min="0" max="20"></li>
         </ul>
         <button @click="removeFromCartHandler" class="purchasing__btn-close"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M11.2453 9L17.5302 2.71516C17.8285 2.41741 17.9962 2.01336 17.9966 1.59191C17.997 1.17045 17.8299 0.76611 17.5322 0.467833C17.2344 0.169555 16.8304 0.00177586 16.4089 0.00140366C15.9875 0.00103146 15.5831 0.168097 15.2848 0.465848L9 6.75069L2.71516 0.465848C2.41688 0.167571 2.01233 0 1.5905 0C1.16868 0 0.764125 0.167571 0.465848 0.465848C0.167571 0.764125 0 1.16868 0 1.5905C0 2.01233 0.167571 2.41688 0.465848 2.71516L6.75069 9L0.465848 15.2848C0.167571 15.5831 0 15.9877 0 16.4095C0 16.8313 0.167571 17.2359 0.465848 17.5342C0.764125 17.8324 1.16868 18 1.5905 18C2.01233 18 2.41688 17.8324 2.71516 17.5342L9 11.2493L15.2848 17.5342C15.5831 17.8324 15.9877 18 16.4095 18C16.8313 18 17.2359 17.8324 17.5342 17.5342C17.8324 17.2359 18 16.8313 18 16.4095C18 15.9877 17.8324 15.5831 17.5342 15.2848L11.2453 9Z" fill="#575757"/>
@@ -281,6 +281,9 @@ Vue.component('cart-card', {
     methods: {
         removeFromCartHandler() {
             this.$emit('remove-from-cart', this.cartProduct.id);
+        },
+        changeQuantityHandler() {
+            this.$emit('change-quantity', this.cartProduct.id)
         }
     }
 
@@ -289,12 +292,12 @@ Vue.component('cart-card', {
 Vue.component('cart-products-list', {
     template: `<div class="purchasing__box">
 
-        <cart-card v-for="cartProduct of cart" v-bind:cartProduct="cartProduct" @remove-from-cart="removeFromCartHandler"></cart-card>
+        <cart-card v-for="cartProduct of cart" v-bind:cartProduct="cartProduct" @remove-from-cart="removeFromCartHandler" @change-quantity="changeQuantityHandler"></cart-card>
 
-        <div class="purchasing__btn">
+        <div class="purchasing__btn" >
             <button @click="clearBtnHandler">Clear shopping cart</button>
             <a href="catalog.html">Continue shopping</a>
-        </div>
+        </div> 
     </div>`,
     props: ['cart'],
     methods: {
@@ -303,6 +306,9 @@ Vue.component('cart-products-list', {
         },
         clearBtnHandler() {
             this.$emit('clear-cart');
+        },
+        changeQuantityHandler(id) {
+            this.$emit('change-quantity', id)
         }
     }
 })
@@ -355,10 +361,17 @@ Vue.component('cart-page', {
     <site-header @go-to="goToHandler" v-bind:total-quantity="totalQuantity"></site-header>
     <main>
         <cart-top></cart-top>
-        <section class="purchasing center">
-            <cart-products-list v-bind:cart="cart" @remove-from-cart="removeFromCartHandler" @clear-cart="CartBtnHandler"></cart-products-list>
+        <section v-if="cart.length !== 0" class="purchasing center">
+            <cart-products-list v-bind:cart="cart" @remove-from-cart="removeFromCartHandler" @clear-cart="CartBtnHandler" @change-quantity="changeQuantityHandler"></cart-products-list>
             <cart-confirm v-bind:total-price="totalPrice"></cart-confirm>
         </section>
+        <section v-else class="purchasing purchasing-empty center " >
+            <span class="purchasing__text">Your cart is empty </span>
+            <div class="purchasing__btn purchasing-empty__btn" >
+                <a href="#">Continue shopping</a>
+            </div>
+        </section> 
+
     </main>
     <advantages></advantages>
     <feedback></feedback>
@@ -373,6 +386,9 @@ Vue.component('cart-page', {
         },
         CartBtnHandler() {
             this.$emit('clear-cart');
+        },
+        changeQuantityHandler(id) {
+            this.$emit('change-quantity', id)
         }
     },
     props: ['cart', 'total-quantity', 'total-price']
@@ -382,70 +398,8 @@ const app = new Vue({
     el: '#app',
     data: {
         currentPage: 'index',
-        list: [
-            {
-                "id": 1,
-                "image": "item-1.jpg",
-                "imageM": "item-1-M.jpg",
-                "imageS": "item-1-S.jpg",
-                "product_name": "ELLERY X M'O CAPSULE",
-                "product_desc": "Known for her sculptural takes on traditional tailoring, Australian arbiter of cool Kym Ellery teams up with Moda Operandi.",
-                "price": 52,
-                "quantity": 0
-            },
-            {
-                "id": 2,
-                "image": "item-2.jpg",
-                "imageM": "item-2-M.jpg",
-                "imageS": "item-2-S.jpg",
-                "product_name": "ELLERY X M'O CAPSULE",
-                "product_desc": "Known for her sculptural takes on traditional tailoring, Australian arbiter of cool Kym Ellery teams up with Moda Operandi.",
-                "price": 52,
-                "quantity": 0
-            },
-            {
-                "id": 3,
-                "image": "item-3.jpg",
-                "imageM": "item-3-M.jpg",
-                "imageS": "item-3-S.jpg",
-                "product_name": "ELLERY X M'O CAPSULE",
-                "product_desc": "Known for her sculptural takes on traditional tailoring, Australian arbiter of cool Kym Ellery teams up with Moda Operandi.",
-                "price": 52,
-                "quantity": 0
-            },
-            {
-                "id": 4,
-                "image": "item-4.jpg",
-                "imageM": "item-4-M.jpg",
-                "imageS": "item-4-S.jpg",
-                "product_name": "ELLERY X M'O CAPSULE",
-                "product_desc": "Known for her sculptural takes on traditional tailoring, Australian arbiter of cool Kym Ellery teams up with Moda Operandi.",
-                "price": 52,
-                "quantity": 0
-            },
-            {
-                "id": 5,
-                "image": "item-5.jpg",
-                "imageM": "item-5-M.jpg",
-                "imageS": "item-5-S.jpg",
-                "product_name": "ELLERY X M'O CAPSULE",
-                "product_desc": "Known for her sculptural takes on traditional tailoring, Australian arbiter of cool Kym Ellery teams up with Moda Operandi.",
-                "price": 52,
-                "quantity": 0
-            },
-            {
-                "id": 6,
-                "image": "item-6.jpg",
-                "imageM": "item-6-M.jpg",
-                "imageS": "item-6-S.jpg",
-                "product_name": "ELLERY X M'O CAPSULE",
-                "product_desc": "Known for her sculptural takes on traditional tailoring, Australian arbiter of cool Kym Ellery teams up with Moda Operandi.",
-                "price": 52,
-                "quantity": 0
-            }
-        ],
+        list: [],
         cart: [],
-
     },
     methods: {
         goToHandler(target) {
@@ -453,33 +407,70 @@ const app = new Vue({
         },
         addToCartHandler(id) {
             const product = this.list.find(item => item.id === id);
-            if (product.quantity === 0) {
+            if (product.quantity === 0 || this.cart.length === 0) {
+                product.quantity++;
                 this.cart.push(product);
-                fetch('/cart', {
+                fetch('/addToCart', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
-                        // 'Content-Type': 'application/x-www-form-urlencoded',
                     },
-                    redirect: 'follow', // manual, *follow, error
-                    referrerPolicy: 'no-referrer', // no-referrer, *client
+                    redirect: 'follow',
+                    referrerPolicy: 'no-referrer',
                     body: JSON.stringify(product)
-                })
-                product.quantity++;
+                });
             } else {
                 product.quantity++;
+                fetch('/change', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    redirect: 'follow',
+                    referrerPolicy: 'no-referrer',
+                    body: JSON.stringify(product)
+                });
             }
         },
         removeFromCartHandler(id) {
             const product = this.cart.find(item => item.id === id);
-            if (product.quantity > 1) {
-                product.quantity--;
-            } else {
-                this.cart = this.cart.filter(item => item.id !== id);
-            }
+            product.quantity = 0;
+            this.cart = this.cart.filter(item => item.id !== id);
+            fetch('/removeFromCart', {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(product)
+            });
+
         },
         clearBtnHandler() {
+            this.cart.forEach(item => {
+                item.quantity = 0;
+            });
             this.cart.splice(0, this.cart.length);
+            fetch('/clear', {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+        },
+        changeQuantityHandler(id) {
+            const product = this.cart.find(item => item.id === id);
+            if (product.quantity === 0) {
+                this.cart = this.cart.filter(item => item.id !== id);
+            }
+            fetch('/change', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                redirect: 'follow',
+                referrerPolicy: 'no-referrer',
+                body: JSON.stringify(product)
+            });
         }
     },
     computed: {
@@ -489,5 +480,10 @@ const app = new Vue({
         totalPrice: function () {
             return this.cart.reduce((acc, product) => acc + product.price * product.quantity, 0);
         }
+    },
+    mounted() {
+        fetch('/product')
+            .then(res => res.json())
+            .then(data => this.list = data)
     }
 })
