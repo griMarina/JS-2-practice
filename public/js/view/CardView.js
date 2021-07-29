@@ -1,4 +1,4 @@
-export default class Card {
+export default class CardView {
     constructor(product) {
         this._data = product;
         this._addHandlerCb = null;
@@ -7,7 +7,7 @@ export default class Card {
     getHtlm() {
         return `<div class="card" id="card-${this._data.id}">
             <div class="card__img">
-                <img src="img/${this._data.img}" alt="item's image">
+                <img src="img/${this._data.image}" alt="item's image">
                     <div class="card__overlay">
                         <button class="card__btn">
                             <svg width="27" height="25" viewBox="0 0 27 25" xmlns="http://www.w3.org/2000/svg">
@@ -18,7 +18,7 @@ export default class Card {
                     </div>
             </div>
             <h3 class="card__title">${this._data.title}</h3>
-            <p class="text card__text">${this._data.desc}</p>
+            <p class="text card__text">${this._data.description}</p>
             <span class="card__price">$${this._data.price}</span>
 
         </div>`;
