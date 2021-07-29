@@ -1,0 +1,99 @@
+.categories {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding-top: 65px;
+    padding-bottom: 96px;
+}
+
+.category-item {
+    background-color: #211616;
+    width: 31.5%;
+    min-height: 260px;
+    color: #FFFFFF;
+    text-align: center;
+    @include flex ();
+    transition-duration: 0.4s;
+
+    &:hover {
+        transform:scale(1.05);
+    }
+}
+
+.category-title {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+}
+
+.category-title-pink {
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 29px;
+    color: #F16D7F;
+}
+
+.category-women {
+    background-image: url(../img/bg-cat-women.jpg);
+    background-repeat: no-repeat;
+}
+
+.category-men {
+    background-image: url(../img/bg-cat-men.jpg);
+    background-repeat: no-repeat;
+}
+
+.category-kids {
+    background-image: url(../img/bg-cat-kids.jpg);
+    background-repeat: no-repeat;
+}
+
+.category-accesories {
+    width: 100%;
+    min-height: 180px;
+    margin-top: 30px;
+    background-image: url(../img/bg-cat-accesories.jpg);
+    background-repeat: no-repeat;
+}
+
+// tablet
+
+@media (max-width: 1192px) {
+    
+    .categories {
+        padding-top: 20px;
+        padding-bottom: 155px;
+    }
+
+    .category-item {
+        min-height: 167px;
+        background-size: cover;
+        background-position-x: center;
+    }
+
+    .category-accesories {
+        min-height: 116px;
+        width: 100%;
+    }
+}
+
+// mobile
+
+@media (max-width: 788px) {
+    .categories {
+        padding-top: 64px;
+        padding-bottom: 64px;
+    }
+
+    .category-item {
+        min-height: 247px;
+        width: 100%;   
+        margin-bottom: 32px; 
+    }
+
+    .category-accesories {
+        min-height: 111px;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+}

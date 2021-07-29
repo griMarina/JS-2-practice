@@ -1,0 +1,39 @@
+.catalog-pagination-wrap {
+    width: 284px;
+    padding: 15px;
+    border: 1px solid #EBEBEB;
+    border-radius: 3px;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 18px;
+    margin-bottom: 96px;
+}
+
+.catalog-pagination-link {
+    text-decoration: none;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 19px;
+    color: #EBEBEB;
+    transition-duration: 0.4s;
+
+    .catalog-pagination-link::current {
+
+    }
+}
+
+.catalog-pagination-link:hover {
+    transform: scale(1.4);
+    color: $main-color;
+}
+
+.link-prev:not(hover) {
+    color: #000;
+}
+
+.link-next:not(hover) {
+    color: #000;
+}
+
+
+

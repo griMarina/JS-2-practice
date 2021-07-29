@@ -1,0 +1,126 @@
+.feedback {
+    background-image: url(../img/bg-feedback.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    min-height: 448px;
+    @include flex (space-between);
+}
+
+.reviews {
+    width: 360px;
+    text-align: center;
+}
+
+.reviews-text {
+    margin-top: 30px;
+    font-size: 20px;
+    line-height: 24px;
+    color: #222224;
+}
+
+.reviews-italic {
+    font-style: italic;
+}
+
+.subscribe {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin-right: 9%;
+}
+
+.subscribe-title {
+    font-weight: 700;
+    font-size: 24px;
+    color: #222224;
+    line-height: 167.2%;
+}
+
+.subscribe-text {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 167.2%;
+    color: #222224;
+}
+
+.subscribe-form {
+    margin-top: 32px;
+    display: flex;
+    justify-content: center;
+}
+
+.subscribe-form-field {
+    padding: 20px 64px 20px 22px;
+    border: none;
+    background-color: #E1E1E1;
+    border-top-left-radius: 19px;
+    border-bottom-left-radius: 19px;
+    font-size: 14px;
+    line-height: 17px;
+}
+
+.subscribe-form-field::placeholder {
+    font-family: inherit;
+}
+
+.subscribe-form-btn {
+    border: none;
+    padding: 20px;
+    background-color: $main-color;
+    border-top-right-radius: 19px;
+    border-bottom-right-radius: 19px;
+    color: #FFFFFF;
+    font-size: 14px;
+    line-height: 17px;
+    font-family: inherit;
+    cursor: pointer;
+    transition-duration: 0.4s;
+}
+
+.subscribe-form-btn:hover {
+    background-color: #FFFFFF;
+    color: $main-color;
+}
+
+// tablet
+
+@media (max-width: 1192px) {
+    .feedback {
+        flex-direction: column;
+        padding-top: 64px;
+        padding-bottom: 140px;
+        background-position-x: -3px;
+    }
+
+    .reviews {
+        padding-bottom: 30px;
+        margin-bottom: 48px;
+    }
+
+    .subscribe {
+        margin-right: 0;
+    }
+}
+
+// mobile
+
+@media (max-width: 788px) {
+    .feedback {
+        padding-bottom: 109px;
+    }
+
+    .reviews-text {
+        font-size: 18px;
+        line-height: 22px;
+    }
+
+    .subscribe-title {
+        line-height: 153.2%;
+    }
+
+    .subscribe-text {
+        font-size: 14px;
+        line-height: 153.2%;
+    }
+}
