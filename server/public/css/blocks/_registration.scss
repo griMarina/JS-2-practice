@@ -1,0 +1,152 @@
+.registration {
+    margin-top: 64px;
+    margin-bottom: 96px;
+    display: flex;
+    justify-content: space-between;
+
+    & fieldset {
+        border: none;
+    }
+
+    &__form {
+        width: 360px;
+    }
+
+    &__input {
+        display: block;
+        padding: 12px 0 15px 16px;
+        border: 1px solid #A4A4A4;
+        margin-top: 20px;
+        width: 100%;
+        font-family: inherit;
+
+        &::placeholder {
+            font-weight: 300;
+            font-size: 13px;
+            line-height: 16px;
+            color: #B1B1B1;
+        }
+
+    }
+
+    &__gender {
+        margin-bottom: 33px;
+        margin-top: 31px;
+        font-weight: 300;
+        font-size: 11px;
+        line-height: 13px;
+    }
+
+    &__gender-label {
+        margin-left: 20px;
+    }
+
+    &__gender-input {
+        margin-right: 10px;
+        font-weight: 300;
+        font-size: 11px;
+        line-height: 13px;
+    }
+
+    &__text {
+        margin-top: 15px;
+        margin-bottom: 39px;
+        font-weight: 300;
+        font-size: 13px;
+        line-height: 16px;
+        color: #B1B1B1;
+    }
+
+    &__legend {
+        font-weight: 300;
+        font-size: 16px;
+        line-height: 19px;
+        color: #222222;
+    }
+
+    &__btn {
+        padding: 16px 29px;
+        background-color: $main-color;
+        border: 1px solid #FFFFFF;
+        color: #FFFFFF;
+        cursor: pointer;
+        @include text-font(400);
+        font-family: inherit;
+        transition-duration: 0.4s;
+
+
+        & svg {
+            fill: #FFFFFF;
+            margin-left: 20px;
+        }
+
+        &:hover {
+            color: $main-color;
+            background-color: #FFFFFF;
+            border: 1px solid $main-color;
+
+            & svg {
+                fill: $main-color;
+            }
+        }
+    }
+
+    &__benefits {
+        width: 652px;
+        font-weight: 300;
+        font-size: 24px;
+        line-height: 29px;
+    }
+
+    &__benefits-title {
+        font-weight: 300;
+    }
+
+    &__benefits-text {
+        margin-top: 22px;
+        margin-bottom: 21px;
+    }
+
+    &__benefits-list {
+        list-style-type: none;
+
+        & li {
+            margin-top: 16px;
+            background-image: url(../img/check-list.svg);
+            background-repeat: no-repeat;
+            background-position-y: center;
+            padding-left: 42px;        
+        }
+    }
+}
+
+@media (max-width: 1195px) {
+    .registration {
+        &__form {
+            margin-right: 22px;
+            min-width: 360px;
+        }
+
+        &__benefits {
+            font-weight: 300;
+            font-size: 16px;
+            line-height: 19px;
+        }
+    }
+}
+
+@media (max-width: 788px) {
+    .registration {
+        flex-direction: column;
+
+        &__form {
+            width: 100%;
+        }
+
+        &__benefits {
+            width: 100%;
+            margin-top: 40px;
+        }
+    }
+}
+

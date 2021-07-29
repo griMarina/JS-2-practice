@@ -1,0 +1,48 @@
+.footer {
+    background-color: #222224;
+    @include flex (space-between);
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.copy-text {
+    color: #FBFBFB;
+    font-size: 16px;
+    line-height: 19px;
+}
+
+.social {
+    display: flex;
+}
+
+.social-link {
+    text-decoration: none;
+    margin-right: 7px;
+    width: 32px;
+    height: 32px;
+    @include flex;
+    background-color: #fff;
+    color: #000;
+    transition-duration: 0.4s;
+}
+
+.social-link:hover {
+    background-color: $main-color;
+    color: #fff;
+    transform: scale(1.1);
+}
+
+// mobile
+
+@media (max-width: 788px) {
+    .footer {
+        display: flex;
+        flex-direction: column-reverse;
+        padding-top: 43px;
+        padding-bottom: 9px;
+    }
+
+    .social {
+        margin-bottom: 40px;
+    }
+}
